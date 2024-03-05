@@ -34,6 +34,25 @@
 
  @push('js')
      <script>
+         // Delete
+         $('.delete-data').on('click', function(e) {
+             e.preventDefault()
+             const data = $(this).closest('tr').find('td:eq(1)').text()
+             Swal.fire({
+                 title: `Apakah data <span style="color:#3085d6">${data}</span> akan dihapus?`,
+                 icon: "question",
+                 confirmButtonText: "Ya",
+                 cancelButtonText: "Tidak",
+                 showCancelButton: true,
+                 showCloseButton: true
+             }).then((result) => {
+                 if (result.isConfirmed)
+                     $(e.target).closest('form').submit()
+                 else swal.close()
+             })
+         })
+
+
          // Edit
          $('#modalFormTitipan').on('show.bs.modal', function(e) {
              const btn = $(e.relatedTarget)

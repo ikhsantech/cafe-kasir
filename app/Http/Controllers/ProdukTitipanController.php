@@ -53,20 +53,20 @@ class ProdukTitipanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProdukTitipanRequest $request, ProdukTitipan $produkTitipan)
+    public function update(UpdateProdukTitipanRequest $request, ProdukTitipan $titipan)
     {
                    $validated=$request->validated();
-       $produkTitipan->update($validated);
+       $titipan->update($validated);
        return redirect()->route('titipan.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProdukTitipan $produkTitipan)
+    public function destroy(ProdukTitipan $titipan)
     {
-        // $produkTitipan->delete();
-        // return redirect('titipan');
+        $titipan->delete();
+        return redirect('titipan');
     }
 }
 

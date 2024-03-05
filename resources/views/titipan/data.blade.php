@@ -28,6 +28,17 @@
                              data-harga_jual="{{ $tip->harga_jual }}" data-stok="{{ $tip->stok }}"
                              data-keterangan="{{ $tip->keterangan }}"> Edit</button>
                      </td>
+                     <td>
+                         <form method="post" action="{{ route('titipan.destroy', $tip->id) }}"
+                             style="display: inline">
+                             @csrf
+                             @method('DELETE')
+                             <button type="button" class="btn bg-gradient-danger delete-data"
+                                 data-nama_produk="{{ $tip->nama_produk }}">
+                                 Delete
+                             </button>
+                         </form>
+                     </td>
                  </tr>
              @endforeach
 
