@@ -72,6 +72,7 @@ class TipeController extends Controller
      */
     public function destroy(tipe $tipe)
     {
-        //
+          $tipe->delete();
+        return redirect('tipe');
     }
 }

@@ -65,6 +65,7 @@ class PelangganController extends Controller
      */
     public function destroy(pelanggan $pelanggan)
     {
-        //
+        $pelanggan->delete();
+        return redirect('pelanggan');
     }
 }

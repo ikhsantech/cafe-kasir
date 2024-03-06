@@ -71,6 +71,6 @@ class StokController extends Controller
     public function destroy(stok $stok)
     {
      $stok->delete();
-     return redirect()->back()->route('stok.index');
+        return redirect('stok');
     }
 }

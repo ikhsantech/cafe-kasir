@@ -69,6 +69,7 @@ class MenuController extends Controller
      */
     public function destroy(menu $menu)
     {
-        //
+                $menu->delete();
+        return redirect('menu');
     }
 }

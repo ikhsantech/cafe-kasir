@@ -67,6 +67,7 @@ class KategoriController extends Controller
      */
     public function destroy(kategori $kategori)
     {
-        //
+        $kategori->delete();
+        return redirect('kategori');
     }
 }

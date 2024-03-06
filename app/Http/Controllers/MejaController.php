@@ -65,6 +65,7 @@ class MejaController extends Controller
      */
     public function destroy(meja $meja)
     {
-      
+        $meja->delete();
+        return redirect('meja');
     }
 }
