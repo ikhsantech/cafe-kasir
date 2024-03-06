@@ -14,19 +14,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($transaksi->detail_transaksi as $item)
+            {{-- @foreach ($transaksi->detail_transaksi as $item)
                 <tr>
                     <td>{{ $item->jumlah }}</td>
                     <td>{{ $item->menu->nama_menu }}</td>
                     <td>{{ number_format($item->menu->harga, 0, ',', '.') }}</td>
                     <td>{{ number_format($item->menu->subtotal, 0, ',', '.') }}</td>
                 </tr>
-            @endforeach
+            @endforeach --}}
         </tbody>
         <tfoot>
             <tr>
                 <td colspan="3">Total</td>
-                <td>{{ number_format($transaksi->total_harga, 0, ',', '.') }}</td>
+                {{-- <td>{{ number_format($transaksi->total_harga, 0, ',', '.') }}</td> --}}
             </tr>
         </tfoot>
     </table>

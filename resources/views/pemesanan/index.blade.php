@@ -155,6 +155,7 @@
                          }).then((result) => {
                              if (result.isConfirmed) {
                                  window.open("{{ url('nota') }}/" + data.notrans)
+                                 location.reload();
                              } else if (result.isDenied) {
                                  location.reload();
                              }
