@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
-        $table->id();
-       $table->unsignedBigInteger('transaksi_id');
-       $table->unsignedBigInteger('menu_id');
-       $table->integer('jumlah');
-       $table->integer('subtotal');
-    //    $table->foreign('transaksi_id')->references('transaksi_id')->on('transaksi');
-    //    $table->foreign('menu_id')->references('menu_id')->on('menu');
-          $table->timestamps();
-
+            $table->id();
+            $table->unsignedBigInteger('transaksi_id');
+            $table->unsignedBigInteger('menu_id');
+            $table->integer('jumlah');
+            $table->integer('subtotal');
+            $table->foreign('transaksi_id')->references('id')->on('transaksi');
+            $table->foreign('menu_id')->references('id')->on('menu');
+            $table->timestamps();
         });
     }
 

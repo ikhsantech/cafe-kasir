@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\transaksi;
 use App\Http\Requests\TransaksiRequest;
+use App\Models\DetailTransaksi;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -33,56 +34,68 @@ class TransaksiController extends Controller
      */
     public function store(TransaksiRequest $request)
     {
-        try{
-            $last_id = Transaksi::where('tanggal',date('Y-m-d'))->orderBy('tanggal','desc')->select('id')->first();
 
-            $notrans = $last_id == null ? date('Ymd').'001':date('Ymd').sprintf('%04d', substr($last_id,8,4)+1);
 
-            $insertTransaksi = Transaksi::create([
-                    'id' =>$notrans,
-                    'tanggal'=> date('Y-m-d'),
-                    'total_harga'=>$request->total,
-                    'metode_pembayaran'=>'cash',
-                    'keterangan'=>''
-            ]); 
-            if(!$insertTransaksi->exists)return'error';
-        
 
-         
+        try {
+
+            DB::beginTransaction();
+
+
+            $today = now()->format('Ymd');
+            $last_custom_id = transaksi::where('tanggal', $today)->orderBy('id', 'desc')->first();
+
+            if ($last_custom_id) {
+                $last_id = substr($last_custom_id->id, -4);
+                $notrans = $today . str_pad((intval($last_id) + 1), 4, '0', STR_PAD_LEFT);
+            } else {
+                $notrans = $today . '0001';
+            }
+
+            $insertTransaksi = transaksi::create([
+                'id' => $notrans,
+                'tanggal' => date('Y-m-d'),
+                'total_harga' => $request->total,
+                'metode_pembayaran' => 'cash',
+                'keterangan' => 'uji coba',
+            ]);
+
+
+            if (!$insertTransaksi) return 'error';
+
             // input detail transaksi
-            foreach($request->orderedList as $detail){
-                $insertDetailTransaksi = DetailTransaksi::create([
-                    'transaksi_id'=>$notrans,
-                    'menu_id'=>$detail['menu_id'],
-                    'jumlah'=>$detail['qty'],
-                    'menu_id'=>$detail['harga'] * $detail['qty'],
+            foreach ($request->orderedList as $detail) {
+                DetailTransaksi::create([
+                    'transaksi_id' => $notrans,
+                    'menu_id' => $detail['id'],
+                    'jumlah' => $detail['qty'],
+                    'subtotal' => $detail['harga'] * $detail['qty'],
 
                 ]);
             }
 
-                    DB::commit();
-                    return response()->json(['status'=>true,'message'=>"Pemesanan Berhasil",'notrans'=>$notrans]);
-                 }catch(Exception | QueryException | PDOException $e){
-                    return response()->json(['status'=>false,'message'=>"Pemesanan Gagal"]);
+            DB::commit();
+            return response()->json(['status' => true, 'message' => "Pemesanan Berhasil", 'notrans' => $insertTransaksi->id]);
+        } catch (Exception | QueryException | PDOException $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage(), 'error' => $e->getMessage()]);
 
-                    DB::rollback();
-                 };
+            DB::rollback();
+        };
 
-                 return $insertTransaksi;
+        return $insertTransaksi;
     }
 
 
-    public function faktur($nofaktur){
-  try{
-    $data['transaksi']=Transaksi::where('id',$nofaktur)->with(['detailTransaksi'=> function 
-    ($query){
-        $query->with('menu');
-    }])->first();
-    
-    return view('cetak.faktur')->with($data);
-  }catch(Exception | QueryException | PDOException $e){
-    return response()->json(['status'=>false,'message'=>'Pemesanan Gagal']);
-  }
+    public function faktur($nofaktur)
+    {
+        try {
+            $transaksi = transaksi::findOrFail($nofaktur);
+
+
+            return view('cetak.faktur', compact('transaksi'));
+        } catch (Exception | QueryException | PDOException $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
 
     /**

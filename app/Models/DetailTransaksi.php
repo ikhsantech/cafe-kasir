@@ -7,25 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailTransaksi extends Model
 {
-     use HasFactory;
+    use HasFactory;
     protected $table = 'detail_transaksi';
-    protected $fillable=[
-    'transaksi_id',
-    'menu_id',
-    'jumlah',
-    'subtotal'
-];
- 
+    protected $fillable = [
+        'transaksi_id',
+        'menu_id',
+        'jumlah',
+        'subtotal'
+    ];
 
 
-public function transaksi(){
-    return $this->belongsTo(Transaksi::class,'transaksi_id');
+
+    public function transaksi()
+    {
+        return $this->belongsTo(transaksi::class);
     }
 
-    public function menu(){
-    return $this->hasOne(Menu::class);
+    public function menu()
+    {
+        return $this->belongsTo(menu::class);
     }
-
 }
-
-
