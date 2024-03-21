@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\kategori;
 use App\Http\Requests\StorekategoriRequest;
 use App\Http\Requests\UpdatekategoriRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\KategoriExport; 
 
 class KategoriController extends Controller
 {
@@ -70,4 +72,11 @@ class KategoriController extends Controller
         $kategori->delete();
         return redirect('kategori');
     }
+
+
+public function exportData(){
+    $date = date('Y-m-d');
+    return Excel::download(new KategoriExport, $date.'_kategori.xlsx');
+}
+
 }

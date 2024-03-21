@@ -19,6 +19,11 @@
                      <div class="card-body">
                          <button type="button" class="btn btn-primary" data-toggle="modal"
                              data-target="#modalFormKategori">Add</button>
+
+                         <a href="{{ route('export-kategori') }}" class="btn btn-success">
+                             <i class="fa fa-file" aria-hidden="true"></i> Export
+                         </a>
+
                          @include('kategori.form')
                          @include('kategori.data')
 

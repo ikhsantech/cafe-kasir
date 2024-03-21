@@ -37,6 +37,8 @@ route::get('tentang',[HomeController::class,'tentang']);
 
 
 Route::resource('kategori', KategoriController::class);
+Route::get('export/kategori', [KategoriController::class, 'exportData'])->name('export-kategori');
+
 Route::resource('tipe', TipeController::class);
 Route::resource('menu', MenuController::class);
 Route::resource('pemesanan', PemesananController::class);
