@@ -19,6 +19,22 @@
                      <div class="card-body">
                          <button type="button" class="btn btn-primary" data-toggle="modal"
                              data-target="#modalFormStok">Add</button>
+
+                         <a href="{{ route('export-stok') }}" class="btn btn-success">
+                             <i class="fa fa-file" aria-hidden="true"></i> Export
+                         </a>
+
+
+                         <a href="{{ route('stok-pdf') }}" class="btn btn-danger">
+                             <i class="fa fa-file" aria-hidden="true"></i> PDF
+                         </a>
+
+
+                         <!-- Button trigger modal -->
+                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#stokImport">
+                             Import data
+                         </button>
+
                          @include('stok.form')
                          @include('stok.data')
 

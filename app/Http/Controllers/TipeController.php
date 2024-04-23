@@ -7,6 +7,11 @@ use App\Models\kategori;
 use App\Http\Requests\StoretipeRequest;
 use App\Http\Requests\UpdatetipeRequest;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TipeExport;
+use App\Imports\TipeImport;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TipeController extends Controller
 {
@@ -15,12 +20,10 @@ class TipeController extends Controller
      */
     public function index()
     {
-       $tipe = Tipe::With('kategori')->get();
-       $kategori = Kategori::all();
-        
-        return view(('tipe.index'),compact('tipe','kategori'));
+        $tipe = Tipe::With('kategori')->get();
+        $kategori = Kategori::all();
 
-
+        return view(('tipe.index'), compact('tipe', 'kategori'));
     }
 
     /**
@@ -61,10 +64,9 @@ class TipeController extends Controller
      */
     public function update(UpdatetipeRequest $request, tipe $tipe)
     {
-        $validated=$request->validated();
-       $tipe->update($validated);
-       return redirect()->route('tipe.index');
-
+        $validated = $request->validated();
+        $tipe->update($validated);
+        return redirect()->route('tipe.index');
     }
 
     /**
@@ -72,7 +74,28 @@ class TipeController extends Controller
      */
     public function destroy(tipe $tipe)
     {
-          $tipe->delete();
+        $tipe->delete();
         return redirect('tipe');
+    }
+
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new TipeExport, $date . '_tipe.xlsx');
+    }
+
+
+    public function importData(Request $request)
+    {
+
+        Excel::import(new TipeImport, $request->import);
+        return redirect('tipe')->with('success', 'Import data berhasil');
+    }
+
+    public function downloadspdf()
+    {
+        $data['tipe'] = Tipe::get();
+        $pdf = Pdf::loadView('tipe.tipe-pdf', $data);
+        return $pdf->stream();
     }
 }

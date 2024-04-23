@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\stok;
 use App\Http\Requests\StorestokRequest;
 use App\Http\Requests\UpdatestokRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\StokExport;
+use App\Imports\StokImport;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
 
 class StokController extends Controller
 {
@@ -13,8 +20,8 @@ class StokController extends Controller
      */
     public function index()
     {
-      $data['stok'] =stok::get();
-      return view('stok.index')->with($data);
+        $data['stok'] = stok::get();
+        return view('stok.index')->with($data);
     }
 
     /**
@@ -30,9 +37,9 @@ class StokController extends Controller
      */
     public function store(StorestokRequest $request)
     {
-       
+
         stok::create($request->all());
-        
+
         return redirect('stok');
     }
 
@@ -57,12 +64,12 @@ class StokController extends Controller
      */
     public function update(UpdatestokRequest $request, stok $stok)
     {
-       $validated=$request->validated();
-       $stok->update($validated);
-       return redirect()->route('stok.index');
+        $validated = $request->validated();
+        $stok->update($validated);
+        return redirect()->route('stok.index');
 
-    // $stok->update($request)->all();
-    // return redirect('stok.index')->with('success','Updated');
+        // $stok->update($request)->all();
+        // return redirect('stok.index')->with('success','Updated');
     }
 
     /**
@@ -70,7 +77,30 @@ class StokController extends Controller
      */
     public function destroy(stok $stok)
     {
-     $stok->delete();
+        $stok->delete();
         return redirect('stok');
+    }
+
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new StokExport, $date . '_stok.xlsx');
+    }
+
+
+    public function importData(Request $request)
+    {
+
+        Excel::import(new StokImport, $request->import);
+        return redirect('stok')->with('success', 'Import data berhasil');
+    }
+
+
+
+    public function downloadspdf()
+    {
+        $data['stok'] = Stok::get();
+        $pdf = Pdf::loadView('stok.stok-pdf', $data);
+        return $pdf->stream();
     }
 }

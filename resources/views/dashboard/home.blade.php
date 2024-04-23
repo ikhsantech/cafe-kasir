@@ -1,56 +1,26 @@
 @extends('templates.app')
 @section('content')
-
-      <div class="container mt-5">
+    <div class="container mt-5">
         <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              {{-- HEADER --}}
-              <div class="card-header">
-                <h5 class="title">HEADER</h5>
-              </div>
-              {{-- CONTENT --}}
-              <div class="card-body">
-               <table class="table table-sm">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-              </div>
-              {{-- END CONTENT --}}
+            <div class="col-md-12">
+                <div class="card">
+                    {{-- HEADER --}}
+                    <div class="card-header">
 
+                    </div>
+                    {{-- CONTENT --}}
+                    <div class="card-body">
+                        <div class="logo-image-small text-center">
+                            <img src="../assets/img/logo-cafe.png">
+                        </div>
+                        <div class="text-center">
+                            <h1>Selamat Datang di Cafe in The Sky</h1>
+                        </div>
+                    </div>
+                    {{-- END CONTENT --}}
+
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-
-
-
-
-
-    
+    </div>
 @endsection

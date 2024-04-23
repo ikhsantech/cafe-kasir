@@ -19,6 +19,20 @@
                      <div class="card-body">
                          <button type="button" class="btn btn-primary" data-toggle="modal"
                              data-target="#modalFormMenu">Add</button>
+
+                         <a href="{{ route('export-menu') }}" class="btn btn-success">
+                             <i class="fa fa-file" aria-hidden="true"></i> Export
+                         </a>
+
+                         <a href="{{ route('menu-pdf') }}" class="btn btn-danger">
+                            <i class="fa fa-file" aria-hidden="true"></i> PDF
+                        </a>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#menuImport">
+                                Import data
+                            </button>
+
                          @include('menu.form')
                          @include('menu.data')
 

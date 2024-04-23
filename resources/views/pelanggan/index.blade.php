@@ -19,6 +19,20 @@
                      <div class="card-body">
                          <button type="button" class="btn btn-primary" data-toggle="modal"
                              data-target="#modalFormPelanggan">Add</button>
+
+                         <a href="{{ route('export-pelanggan') }}" class="btn btn-success">
+                             <i class="fa fa-file" aria-hidden="true"></i> Export
+                         </a>
+
+                         <a href="{{ route('pelanggan-pdf') }}" class="btn btn-danger">
+                            <i class="fa fa-file" aria-hidden="true"></i> PDF
+                        </a>
+
+                         <!-- Button trigger modal -->
+                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pelangganImport">
+                            Import data
+                        </button>
+
                          @include('pelanggan.form')
                          @include('pelanggan.data')
 

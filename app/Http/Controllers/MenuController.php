@@ -6,7 +6,13 @@ use App\Models\menu;
 use App\Models\tipe;
 use App\Http\Requests\StoremenuRequest;
 use App\Http\Requests\UpdatemenuRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MenuExport;
+use App\Imports\MenuImport;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class MenuController extends Controller
 {
@@ -18,7 +24,7 @@ class MenuController extends Controller
         $menu = Menu::with('tipe')->get();
         $tipe = Tipe::all();
 
-        return view('menu.index',compact('menu','tipe'));
+        return view('menu.index', compact('menu', 'tipe'));
     }
 
     /**
@@ -26,7 +32,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-    //   
+        //   
     }
 
     /**
@@ -59,9 +65,9 @@ class MenuController extends Controller
      */
     public function update(UpdatemenuRequest $request, menu $menu)
     {
-         $validated=$request->validated();
-       $menu->update($validated);
-       return redirect()->route('menu.index');
+        $validated = $request->validated();
+        $menu->update($validated);
+        return redirect()->route('menu.index');
     }
 
     /**
@@ -69,7 +75,26 @@ class MenuController extends Controller
      */
     public function destroy(menu $menu)
     {
-                $menu->delete();
+        $menu->delete();
         return redirect('menu');
+    }
+
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new MenuExport, $date . '_menu.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new MenuImport, $request->import);
+        return redirect('menu')->with('success', 'Import data berhasil');
+    }
+
+    public function downloadspdf()
+    {
+        $data['menu'] = Menu::get();
+        $pdf = Pdf::loadView('menu.menu-pdf', $data);
+        return $pdf->stream();
     }
 }

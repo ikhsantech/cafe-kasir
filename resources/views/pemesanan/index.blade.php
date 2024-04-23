@@ -22,7 +22,12 @@
 
                              {{-- kiri --}}
                              <div class="col">
-                                 <h5 class="text-center">MENU</h5>
+                                 <div class="namaPemesan mt-3">
+                                     <h6>Nama Pemesan</h6>
+                                     <input type="text" class="rounded">
+                                 </div>
+
+                                 <h5 class="text-center mt-3">MENU</h5>
                                  <li class="list-inline">
                                      @foreach ($tipe as $ti)
                                          <h6>{{ $ti->nama_jenis }}</h6>

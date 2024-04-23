@@ -20,6 +20,12 @@
                  </a>
              </li>
              <li>
+                 <a href="{{ url('absensi') }}">
+                     <i class="fa fa-usd" aria-hidden="true"></i>
+                     <p>Absensi Kerja</p>
+                 </a>
+             </li>
+             <li>
                  <a href="{{ url('kategori') }}">
                      <i class="nc-icon nc-bank"></i>
                      <p>Category</p>
@@ -45,7 +51,7 @@
              </li>
              <li>
                  <a href="{{ url('pelanggan') }}">
-                     <i class="fa fa-cutlery" aria-hidden="true"></i>
+                     <i class="fa fa-users" aria-hidden="true"></i>
                      <p>Pelanggan</p>
                  </a>
              </li>
@@ -67,6 +73,13 @@
                  <a href="{{ url('tentang') }}">
                      <i class="fa fa-usd" aria-hidden="true"></i>
                      <p>Tentang Aplikasi</p>
+                 </a>
+             </li>
+
+             <li>
+                 <a href="{{ url('contact') }}">
+                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                     <p>Contact Us</p>
                  </a>
              </li>
 

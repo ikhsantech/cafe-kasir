@@ -6,7 +6,10 @@ use App\Models\kategori;
 use App\Http\Requests\StorekategoriRequest;
 use App\Http\Requests\UpdatekategoriRequest;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\KategoriExport; 
+use App\Exports\KategoriExport;
+use App\Imports\KategoriImport;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KategoriController extends Controller
 {
@@ -18,7 +21,7 @@ class KategoriController extends Controller
         $data['kategori'] = kategori::orderBy('created_at', 'ASC')->get();
         return view('kategori.index')->with($data);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -59,9 +62,9 @@ class KategoriController extends Controller
      */
     public function update(UpdatekategoriRequest $request, kategori $kategori)
     {
-         $validated=$request->validated();
-       $kategori->update($validated);
-       return redirect()->route('kategori.index');
+        $validated = $request->validated();
+        $kategori->update($validated);
+        return redirect()->route('kategori.index');
     }
 
     /**
@@ -74,9 +77,23 @@ class KategoriController extends Controller
     }
 
 
-public function exportData(){
-    $date = date('Y-m-d');
-    return Excel::download(new KategoriExport, $date.'_kategori.xlsx');
-}
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new KategoriExport, $date . '_kategori.xlsx');
+    }
 
+    public function importData(Request $request)
+    {
+        Excel::import(new KategoriImport, $request->import);
+        return redirect('kategori')->with('success', 'Import data berhasil');
+    }
+
+
+    public function downloadspdf()
+    {
+        $data['kategori'] = Kategori::get();
+        $pdf = Pdf::loadView('kategori.kategori-pdf', $data);
+        return $pdf->stream();
+    }
 }

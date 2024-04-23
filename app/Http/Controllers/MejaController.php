@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\meja;
 use App\Http\Requests\StoremejaRequest;
 use App\Http\Requests\UpdatemejaRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MejaExport;
+use App\Imports\MejaImport;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class MejaController extends Controller
 {
@@ -13,8 +19,8 @@ class MejaController extends Controller
      */
     public function index()
     {
-         $data['meja'] = meja::get();
-      return view('meja.index')->with($data);
+        $data['meja'] = meja::get();
+        return view('meja.index')->with($data);
     }
 
     /**
@@ -30,7 +36,7 @@ class MejaController extends Controller
      */
     public function store(StoremejaRequest $request)
     {
-         meja::create($request->all());
+        meja::create($request->all());
         return redirect('meja');
     }
 
@@ -55,9 +61,9 @@ class MejaController extends Controller
      */
     public function update(UpdatemejaRequest $request, meja $meja)
     {
-        $validated=$request->validated();
-       $meja->update($validated);
-       return redirect()->route('meja.index');
+        $validated = $request->validated();
+        $meja->update($validated);
+        return redirect()->route('meja.index');
     }
 
     /**
@@ -67,5 +73,24 @@ class MejaController extends Controller
     {
         $meja->delete();
         return redirect('meja');
+    }
+
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new MejaExport, $date . '_meja.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new MejaImport, $request->import);
+        return redirect('meja')->with('success', 'Import data berhasil');
+    }
+
+    public function downloadspdf()
+    {
+        $data['meja'] = Meja::get();
+        $pdf = Pdf::loadView('meja.meja-pdf', $data);
+        return $pdf->stream();
     }
 }

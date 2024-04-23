@@ -24,6 +24,17 @@
                              <i class="fa fa-file" aria-hidden="true"></i> Export
                          </a>
 
+                         <a href="{{ route('kategori-pdf') }}" class="btn btn-danger">
+                             <i class="fa fa-file" aria-hidden="true"></i> PDF
+                         </a>
+
+                         <!-- Button trigger modal -->
+                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kategoriImport">
+                             Import data
+                         </button>
+
+
+
                          @include('kategori.form')
                          @include('kategori.data')
 

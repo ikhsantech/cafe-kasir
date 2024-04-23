@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\pelanggan;
 use App\Http\Requests\StorepelangganRequest;
 use App\Http\Requests\UpdatepelangganRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PelangganExport;
+use App\Imports\PelangganImport;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PelangganController extends Controller
 {
@@ -13,8 +19,8 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $data['pelanggan'] =pelanggan::get();
-      return view('pelanggan.index')->with($data);
+        $data['pelanggan'] = pelanggan::get();
+        return view('pelanggan.index')->with($data);
     }
 
     /**
@@ -30,7 +36,7 @@ class PelangganController extends Controller
      */
     public function store(StorepelangganRequest $request)
     {
-         pelanggan::create($request->all());
+        pelanggan::create($request->all());
         return redirect('pelanggan');
     }
 
@@ -55,9 +61,9 @@ class PelangganController extends Controller
      */
     public function update(UpdatepelangganRequest $request, pelanggan $pelanggan)
     {
-           $validated=$request->validated();
-       $pelanggan->update($validated);
-       return redirect()->route('pelanggan.index');
+        $validated = $request->validated();
+        $pelanggan->update($validated);
+        return redirect()->route('pelanggan.index');
     }
 
     /**
@@ -67,5 +73,24 @@ class PelangganController extends Controller
     {
         $pelanggan->delete();
         return redirect('pelanggan');
+    }
+
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new PelangganExport, $date . '_pelanggan.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new PelangganImport, $request->import);
+        return redirect('pelanggan')->with('success', 'Import data berhasil');
+    }
+
+    public function downloadspdf()
+    {
+        $data['pelanggan'] = Pelanggan::get();
+        $pdf = Pdf::loadView('pelanggan.pelanggan-pdf', $data);
+        return $pdf->stream();
     }
 }
