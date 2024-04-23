@@ -28,9 +28,9 @@
                             <i class="fa fa-file" aria-hidden="true"></i> PDF
                         </a>
 
-                           <!-- Button trigger modal import-->
-                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absensiImport">
-                            Import data
+                        <!-- Button trigger modal import-->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absensiImport">
+                            <i class="fa fa-file" aria-hidden="true"></i> Import data
                         </button>
 
 
