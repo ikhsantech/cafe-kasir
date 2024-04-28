@@ -1,39 +1,3 @@
-{{-- <body>
-    <h2>Cafe In The Sky</h2>
-    <h5>Jl.Juanda Cianjur Selatan</h5>
-    <hr>
-    <h5>No. Faktur: {{ $transaksi->id }}</h5>
-    <h5>{{ $transaksi->tanggal }}</h5>
-    <table>
-        <thead>
-            <tr>
-                <td>Qty</td>
-                <td>Item</td>
-                <td>Harga</td>
-                <td>Total</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($transaksi->detailTransaksi as $item)
-                <tr>
-                    <td>{{ $item->jumlah }}</td>
-                    <td>{{ $item->menu->nama_menu }}</td>
-                    <td>{{ number_format($item->menu->harga, 0, ',', '.') }}</td>
-                    <td>{{ number_format($item->menu->subtotal, 0, ',', '.') }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">Total</td>
-                <td>{{ number_format($transaksi->total_harga, 0, ',', '.') }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</body>
-<hr> --}}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,13 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice Nota</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .card-footer {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .table th,
+        .table td {
+            border-top: none;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .table-striped tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+    </style>
 </head>
 
 <body>
     <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
         <div class="card">
             <div class="card-header p-4 text-center">
-                <h4>Cafe In The Sky Cekuttt</h4>
+                <h4>Cafe In The Sky</h4>
             </div>
             <div class="card-body">
                 <div class="row mb-4">

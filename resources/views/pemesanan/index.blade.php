@@ -22,10 +22,7 @@
 
                              {{-- kiri --}}
                              <div class="col">
-                                 <div class="namaPemesan mt-3">
-                                     <h6>Nama Pemesan</h6>
-                                     <input type="text" class="rounded">
-                                 </div>
+
 
                                  <h5 class="text-center mt-3">MENU</h5>
                                  <li class="list-inline">
@@ -124,6 +121,7 @@
                          'qty': 1
                      };
                      orderedList.push(dataN);
+
                      let listOrder = `<li data-id="${id}" class="mt-2"><h6>${menu_clicked}</h6>`;
                      listOrder += ' Rp.' + harga;
                      listOrder += `<button class="remove-item ml-3 btn btn-secondary btn-sm">hapus</button>

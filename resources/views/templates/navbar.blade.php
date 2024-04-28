@@ -20,6 +20,12 @@
                  </a>
              </li>
              <li>
+                 <a href="{{ url('grafik') }}">
+                     <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                     <p>Chart</p>
+                 </a>
+             </li>
+             <li>
                  <a href="{{ url('absensi') }}">
                      <i class="fa fa-usd" aria-hidden="true"></i>
                      <p>Absensi Kerja</p>
@@ -80,6 +86,13 @@
                  <a href="{{ url('contact') }}">
                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
                      <p>Contact Us</p>
+                 </a>
+             </li>
+
+             <li>
+                 <a href="{{ route('logout') }}">
+                     <i class="fa fa-sign-out" aria-hidden="true"></i>
+                     <p>Logout</p>
                  </a>
              </li>
 

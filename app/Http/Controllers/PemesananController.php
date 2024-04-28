@@ -6,6 +6,7 @@ use App\Models\pemesanan;
 use App\Http\Requests\StorepemesananRequest;
 use App\Http\Requests\UpdatepemesananRequest;
 use App\Models\Tipe;
+use App\Models\Pelanggan;
 
 class PemesananController extends Controller
 {
@@ -14,9 +15,9 @@ class PemesananController extends Controller
      */
     public function index()
     {
-       $data['tipe'] = Tipe::with(['menu'])->get();
-    
-       return view('pemesanan.index')->with($data);
+        $data['tipe'] = Tipe::with(['menu'])->get();
+        $data['pelanggan'] = Pelanggan::all();
+        return view('pemesanan.index')->with($data);
     }
 
     /**
@@ -32,7 +33,6 @@ class PemesananController extends Controller
      */
     public function store(StorepemesananRequest $request)
     {
-        return $pemesanan;
     }
 
     /**
