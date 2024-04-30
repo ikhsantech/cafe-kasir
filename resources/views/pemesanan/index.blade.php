@@ -76,12 +76,12 @@
              };
 
              const changeQty = (el, inc) => {
-                 // Change array
+                 // Quantity
                  const id = $(el).closest('li')[0].dataset.id;
                  const index = orderedList.findIndex(list => list.id == id);
                  orderedList[index].qty += orderedList[index].qty == 1 && inc == -1 ? 0 : inc;
 
-                 // Change qty and subtotal
+            //  quantity
                  const txt_subtotal = $(el).closest('li').find('.subtotal');
                  const txt_qty = $(el).closest('li').find('.qty-item');
                  txt_qty.val(parseInt(txt_qty.val()) == 1 && inc == -1 ? 1 : parseInt(txt_qty.val()) + inc);
@@ -90,7 +90,7 @@
                  $('#total').html(sum());
              };
 
-             // Events
+            // ubah quantity
              $('.ordered-list').on('click', '.btn-dec', function() {
                  changeQty(this, -1)
              });

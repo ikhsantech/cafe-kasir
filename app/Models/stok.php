@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class stok extends Model
 {
-     use HasFactory;
+    use HasFactory;
     protected $table = 'stok';
     protected $fillable = [
         'menu_id',
         'jumlah',
     ];
 
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class, 'menu_id');
+    }
 }

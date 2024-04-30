@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menu', function (Blueprint $table) {
+        Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_menu');
-            $table->integer('harga');
-            $table->text('deskripsi');
-            $table->unsignedBiginteger('jenis_id');
-            $table->foreign('jenis_id')->references('id')->on('tipe')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nama_supplier');
+            $table->text('alamat');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menu');
+        Schema::dropIfExists('suppliers');
     }
 };

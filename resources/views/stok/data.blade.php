@@ -12,7 +12,7 @@
              @foreach ($stok as $sto)
                  <tr>
                      <th scope="row">{{ $i = !isset($i) ? ($i = 1) : ++$i }}</th>
-                     <td>{{ $sto->menu_id }}</td>
+                     <td>{{ $sto->menu->nama_menu }}</td>
                      <td>{{ $sto->jumlah }}</td>
                      <td>
                          <button class="btn" data-toggle="modal" data-target="#modalFormStok" data-mode="edit"

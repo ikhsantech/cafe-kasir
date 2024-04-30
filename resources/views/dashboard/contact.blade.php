@@ -62,9 +62,9 @@
                                     <h2>Location</h2>
                                     <!-- Embed Google Maps using iframe -->
                                     <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.370878312666!2d-122.41941268466046!3d37.77492997975382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808580c2b9df9a4f%3A0x8e96e163c9243f8c!2sSan%20Francisco%2C%20California%2C%20USA!5e0!3m2!1sen!2sin!4v1619299905820!5m2!1sen!2sin"
-                                        width="100%" height="400" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
+                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d394.297471041916!2d-122.43707160485646!3d37.7576925779908!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7e05676a1963%3A0x3235f5adeab99e14!2sEureka%20Valley%20Arts!5e0!3m2!1sen!2sin!4v1714352478414!5m2!1sen!2sin"
+                                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                         </div>

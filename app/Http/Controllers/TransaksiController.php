@@ -18,7 +18,8 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        // $data['transaksi'] = Transaksi::orderBy('created_at', 'ASC')->get();
+        // return view('transaksi.index')->with($data);
     }
 
     /**

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('menu_id');
             $table->integer('jumlah');
-         // $table->foreign('menu_id')->references('menu_id')->on('menu');
+            $table->foreign('menu_id')->references('id')->on('menu')->onDelete('cascade')->onUpdate('cascade    ');
             $table->timestamps();
         });
     }
@@ -25,6 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::create('stok', function (Blueprint $table) {
+            $table->dropForeign(['menu_id']);
+        });
+
         Schema::dropIfExists('stok');
     }
 };

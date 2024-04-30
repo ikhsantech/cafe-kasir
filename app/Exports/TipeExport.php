@@ -36,7 +36,7 @@ class TipeExport implements FromCollection, WithHeadings, WithEvents
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                // Apply border to all cells
+
                 $event->sheet->getStyle($event->sheet->calculateWorksheetDimension())->applyFromArray([
                     'borders' => [
                         'allBorders' => [

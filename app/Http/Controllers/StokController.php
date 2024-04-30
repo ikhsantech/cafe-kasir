@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\stok;
+use App\Models\menu;
 use App\Http\Requests\StorestokRequest;
 use App\Http\Requests\UpdatestokRequest;
 use Maatwebsite\Excel\Facades\Excel;
@@ -20,8 +21,9 @@ class StokController extends Controller
      */
     public function index()
     {
-        $data['stok'] = stok::get();
-        return view('stok.index')->with($data);
+        $menu = Menu::all();
+        $stok = Stok::with('menu')->get();
+        return view('stok.index', compact('stok', 'menu'));
     }
 
     /**

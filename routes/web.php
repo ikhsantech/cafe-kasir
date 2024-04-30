@@ -114,4 +114,4 @@ Route::resource('transaksi', TransaksiController::class);
 Route::get('nota/{nofaktur}', [TransaksiController::class, 'faktur']);
 
 // Grafik
-Route::get('grafik',[DataController::class,'index']);
+Route::get('grafik', [DataController::class, 'index']);
