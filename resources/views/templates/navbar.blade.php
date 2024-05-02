@@ -23,15 +23,6 @@
              </li> --}}
 
 
-             {{-- Grafik --}}
-             <li>
-                 <a href="{{ url('grafik') }}">
-                     <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                     <p>Dashboard</p>
-                 </a>
-             </li>
-
-
              {{-- Absensi Kerja --}}
              {{-- <li>
                  <a href="{{ url('absensi') }}">
@@ -42,29 +33,41 @@
 
 
 
+
+             {{-- Dashboard --}}
+             <li>
+                 <a href="{{ url('grafik') }}">
+                     <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                     <p>Dashboard</p>
+                 </a>
+             </li>
+
+
              {{-- Pelanggan --}}
-             {{-- <li>
-                <a href="{{ url('pelanggan') }}">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <p>Pelanggan</p>
-                </a>
-            </li> --}}
+             <li>
+                 <a href="{{ url('pelanggan') }}">
+                     <i class="fa fa-users" aria-hidden="true"></i>
+                     <p>Pelanggan</p>
+                 </a>
+             </li>
 
              {{-- Meja --}}
-             {{-- <li>
+             <li>
                  <a href="{{ url('meja') }}">
                      <i class="fa fa-cutlery" aria-hidden="true"></i>
                      <p>Meja</p>
                  </a>
-             </li> --}}
+             </li>
 
-
+             {{-- Kategori --}}
              <li>
                  <a href="{{ url('kategori') }}">
                      <i class="fa fa-list-ul" aria-hidden="true"></i>
                      <p>Category</p>
                  </a>
              </li>
+
+             {{-- Jenis --}}
              <li>
                  <a href="{{ url('tipe') }}">
                      <i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -72,6 +75,7 @@
                  </a>
              </li>
 
+             {{-- Menu --}}
              <li>
                  <a href="{{ url('menu') }}">
                      <i class="fa fa-cutlery" aria-hidden="true"></i>
@@ -79,7 +83,7 @@
                  </a>
              </li>
 
-
+             {{-- Stok --}}
              <li>
                  <a href="{{ url('stok') }}">
                      <i class="nc-icon nc-diamond"></i>
@@ -87,6 +91,7 @@
                  </a>
              </li>
 
+             {{-- Pemesanan --}}
              <li>
                  <a href="{{ url('pemesanan') }}">
                      <i class="fa fa-usd" aria-hidden="true"></i>
@@ -94,7 +99,7 @@
                  </a>
              </li>
 
-
+             {{-- Contact Us --}}
              <li>
                  <a href="{{ url('contact') }}">
                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
@@ -102,6 +107,7 @@
                  </a>
              </li>
 
+             {{-- Tentang Aplikasi --}}
              <li>
                  <a href="{{ url('tentang') }}">
                      <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -109,7 +115,7 @@
                  </a>
              </li>
 
-
+             {{-- Logout --}}
              <li>
                  <a href="{{ route('logout') }}">
                      <i class="fa fa-sign-out" aria-hidden="true"></i>

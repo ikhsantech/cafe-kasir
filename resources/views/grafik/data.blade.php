@@ -207,7 +207,7 @@
                                             <div class="col-md-8">
                                                 <div class="card">
                                                     <div class="card-header bg-primary text-white text-center">
-                                                        <h5 class="card-title mb-0">Menu Paling Laku</h5>
+                                                        <h5 class="card-title mb-0"> Top 5 Menu Paling Laku</h5>
                                                     </div>
                                                     <div class="card-body">
                                                         <div class="row align-items-center">
